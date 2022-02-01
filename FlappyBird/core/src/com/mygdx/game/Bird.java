@@ -27,7 +27,6 @@ public class Bird extends Image {
     boolean isFacingRight = true;
     boolean gameover = false;
     TiledMapTileLayer layer;
-    Moneda moneda;
 
     final float GRAVITY = -1.75f;
     final float VELOCITY = 6f;
@@ -48,7 +47,7 @@ public class Bird extends Image {
         xVelocity = VELOCITY;
         isFacingRight = true;
 
-        if ((Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isTouched()) && !gameover) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !gameover) {
             yVelocity = VELOCITY * 4;
         }
 

@@ -5,6 +5,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -57,6 +58,15 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0.5f, 0.5f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        if (pajaro.gameover && pajaro.yVelocity == 0 && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            pajaro.gameover = false;
+            score = 0;
+            distancia = 60;
+            pajaro.setPosition(30, 15);
+            camera.position.x = pajaro.getX();
+            camera.update();
+        }
+        
         camera.position.x = pajaro.getX();
         camera.update();
 
@@ -64,7 +74,6 @@ public class GameScreen implements Screen {
         renderer.render();
         
         game.batch.begin();
-        
 	Assets.font.draw(game.batch, "SCORE " + score, 16, 480 - 20);
         
         if(pajaro.getX() >= distancia && pajaro.getX() <= (distancia + 0.2)) {
